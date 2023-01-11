@@ -1,33 +1,34 @@
 import time
+
 import webbrowser
 
 # A list of sites that should be blocked
-blocked_sites = ["https://www.facebook.com", "https://twitter.com", "https://instagram.com"]
+blockedSites = input("Enter the sites to be blocked separated by commas: ").split(",")
 
 # The amount of time (in seconds) that the sites should be blocked for
-block_duration = 1800  # 30 minutes
+blockDuration = int(input("Enter the duration of time (in minutes) the sites should be blocked for: ")) * 60
 
 # Get the current time
-start_time = time.time()
+startTime = time.time()
 
 while True:
     # Check the current time
-    current_time = time.time()
+    currentTime = time.time()
 
     # Calculate the elapsed time
-    elapsed_time = current_time - start_time
+    elapsedTime = currentTime - startTime
 
     # If the elapsed time is greater than the block duration, exit the loop
-    if elapsed_time > block_duration:
+    if elapsedTime > blockDuration:
         break
 
     # Otherwise, check if the current URL is blocked
-    current_url = webbrowser.get().open_new_tab("about:blank").location
+    currentURL = webbrowser.get().open_new_tab("about:blank").location
 
-    for site in blocked_sites:
-        if site in current_url:
+    for site in blockedSites:
+        if site in currentURL:
             webbrowser.get().open_new_tab("about:blank")
-            print(f"Access to {site} is blocked for {block_duration / 60} minutes.")
+            print(f"Access to {site} is blocked for {blockDuration / 60} minutes.")
             time.sleep(5)
 
 print("Access to blocked sites has been restored.")
