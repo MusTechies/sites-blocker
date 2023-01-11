@@ -31,4 +31,4 @@ while True:
             print(f"Access to {site} is blocked for {blockDuration / 60} minutes.")
             time.sleep(5)
 
-print("Access to blocked sites has been restored.")
+print("You can now access your blocked sites")
